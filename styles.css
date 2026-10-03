@@ -1,0 +1,432 @@
+:root {
+    --rosa-suave: #fbd5e0;
+    --rosa: #d6477a;
+    --rosa-boton: #c23a6c;
+    --rosa-oscuro: #a82d5a;
+    --verde-profundo: #1d4a3a;
+    --verde-medio: #3f8a6a;
+    --texto: #1f2e27;
+    --codigo-fondo: #14332a;
+    --codigo-texto: #f6ece9;
+    --fuente-titulos: "Fraunces", Georgia, "Times New Roman", serif;
+    --fuente-texto: "Nunito", "Segoe UI", system-ui, sans-serif;
+    --fuente-codigo: Consolas, "Cascadia Mono", "Courier New", monospace;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: var(--texto);
+    font-family: var(--fuente-texto);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    background-color: #f4c7d6;
+    background-image: radial-gradient(#eeaec4 2px, transparent 2px);
+    background-size: 28px 28px;
+}
+
+/* Portada */
+.portada {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding: 48px 24px 56px;
+    background: var(--verde-profundo);
+    color: #fff;
+    border-radius: 0 0 48px 48px;
+    border-bottom: 8px solid var(--rosa);
+}
+
+.portada-texto {
+    max-width: 480px;
+}
+
+.portada h1 {
+    margin: 0 0 12px;
+    font-family: var(--fuente-titulos);
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    line-height: 1.15;
+}
+
+.portada p {
+    margin: 0;
+    color: var(--rosa-suave);
+}
+
+.frasco {
+    flex: none;
+    width: 130px;
+    animation: flotar 3.5s ease-in-out infinite;
+}
+
+@keyframes flotar {
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50% { transform: translateY(-12px) rotate(4deg); }
+}
+
+/* Barra de progreso fija */
+.progreso {
+    position: sticky;
+    top: 10px;
+    z-index: 10;
+    max-width: 820px;
+    margin: 20px 16px 0;
+    padding: 12px 20px;
+    background: var(--verde-profundo);
+    border: 3px solid var(--rosa);
+    border-radius: 999px;
+    box-shadow: 4px 4px 0 rgba(29, 74, 58, 0.35);
+}
+
+@media (min-width: 860px) {
+    .progreso {
+        margin: 20px auto 0;
+    }
+}
+
+.barra {
+    height: 14px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+#relleno {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: #f58fb0;
+    border-radius: 999px;
+    transition: width 0.4s ease;
+}
+
+#textoProgreso {
+    margin: 6px 0 0;
+    text-align: center;
+    font-weight: 800;
+    font-size: 1rem;
+    color: #ffe4ee;
+}
+
+/* Contenido */
+main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 28px 16px 24px;
+}
+
+/* Tarjetas de colores (cada una define sus tonos) */
+.tarjeta {
+    background: var(--fondo-tarjeta);
+    border: 3px solid var(--verde-profundo);
+    border-radius: 22px;
+    padding: 28px;
+    margin-bottom: 32px;
+}
+
+.tarjeta.rosa {
+    --fondo-tarjeta: #ffe0ea;
+    --fondo-paso: #fbc3d5;
+    --fondo-paso-hecho: #b5dcc2;
+    --fondo-icono: #f7a9c3;
+    --acento: var(--rosa);
+    box-shadow: 8px 8px 0 var(--rosa);
+}
+
+.tarjeta.verde {
+    --fondo-tarjeta: #d9eede;
+    --fondo-paso: #bfe2ca;
+    --fondo-paso-hecho: #f9b9cf;
+    --fondo-icono: #a3d4b4;
+    --acento: var(--verde-medio);
+    box-shadow: 8px 8px 0 var(--verde-medio);
+}
+
+h2, h3 {
+    font-family: var(--fuente-titulos);
+    color: var(--verde-profundo);
+    line-height: 1.25;
+}
+
+h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 18px;
+    font-size: 1.6rem;
+}
+
+.icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 52px;
+    height: 52px;
+    font-size: 1.6rem;
+    background: var(--fondo-icono);
+    border-radius: 50%;
+}
+
+h3 {
+    margin: 24px 0 8px;
+    font-size: 1.25rem;
+}
+
+p {
+    max-width: 70ch;
+    margin: 0 0 14px;
+}
+
+strong {
+    color: var(--verde-profundo);
+}
+
+/* Pasos (sin JavaScript se ven como lista numerada) */
+.pasos {
+    padding-left: 1.6rem;
+    margin: 12px 0 16px;
+}
+
+.pasos li {
+    margin-bottom: 10px;
+}
+
+.pasos li::marker {
+    color: var(--rosa-oscuro);
+    font-weight: 800;
+}
+
+/* Con JavaScript, cada paso lleva una casilla */
+.pasos.con-js {
+    list-style: none;
+    padding-left: 0;
+}
+
+.pasos.con-js label {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 16px;
+    border: 2px solid rgba(29, 74, 58, 0.25);
+    border-radius: 14px;
+    background: var(--fondo-paso);
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.pasos.con-js label:hover {
+    transform: translateX(4px);
+}
+
+.pasos.con-js input {
+    flex: none;
+    width: 1.4rem;
+    height: 1.4rem;
+    margin-top: 0.25rem;
+    accent-color: var(--verde-profundo);
+    cursor: pointer;
+}
+
+.pasos.con-js label:has(input:checked) {
+    background: var(--fondo-paso-hecho);
+    border-color: var(--verde-profundo);
+}
+
+.pasos.con-js label:has(input:checked) span {
+    text-decoration: line-through;
+    text-decoration-color: var(--verde-profundo);
+    opacity: 0.8;
+}
+
+/* Lista de "¿Qué hace?" */
+.tarjeta ul {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 18px;
+}
+
+.tarjeta ul li {
+    margin-bottom: 10px;
+    padding: 10px 14px 10px 16px;
+    background: var(--fondo-paso);
+    border-left: 5px solid var(--acento);
+    border-radius: 0 12px 12px 0;
+}
+
+/* Código grande y legible */
+.codigo {
+    margin: 20px 0 28px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--codigo-fondo);
+    border: 3px solid var(--verde-profundo);
+}
+
+.codigo figcaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    background: var(--verde-profundo);
+    color: var(--rosa-suave);
+    font-family: var(--fuente-codigo);
+    font-size: 1rem;
+}
+
+/* Tres puntitos de colores, como una ventana de editor */
+.codigo figcaption span::before {
+    content: "";
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    margin-right: 50px;
+    vertical-align: middle;
+    border-radius: 50%;
+    background: #f58fb0;
+    box-shadow: 18px 0 #7fc39a, 36px 0 #fbd5e0;
+}
+
+/* Botón de copiar */
+.copiar {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--fuente-texto);
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #fff;
+    background: var(--rosa-boton);
+    border: 0;
+    border-radius: 999px;
+    padding: 7px 16px 7px 13px;
+    cursor: pointer;
+    box-shadow: 0 3px 0 var(--rosa-oscuro);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s ease;
+}
+
+.copiar svg {
+    flex: none;
+}
+
+.copiar:hover {
+    background: var(--rosa);
+    transform: translateY(-1px);
+}
+
+.copiar:active {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 var(--rosa-oscuro);
+}
+
+.copiar.listo {
+    background: var(--verde-medio);
+    box-shadow: 0 3px 0 #2c6a4f;
+}
+
+pre {
+    margin: 0;
+    padding: 20px 24px;
+    overflow-x: auto;
+    tab-size: 4;
+}
+
+pre code {
+    font-family: var(--fuente-codigo);
+    font-size: 1.25rem;
+    line-height: 1.65;
+    color: var(--codigo-texto);
+    background: none;
+    padding: 0;
+}
+
+/* Código dentro de un texto */
+code {
+    font-family: var(--fuente-codigo);
+    font-size: 1.1em;
+    background: rgba(29, 74, 58, 0.14);
+    color: var(--verde-profundo);
+    padding: 2px 7px;
+    border-radius: 6px;
+}
+
+footer {
+    text-align: center;
+    padding: 12px 24px 40px;
+    font-weight: 800;
+    color: var(--verde-profundo);
+}
+
+footer p {
+    margin: 0 auto;
+}
+
+/* Lluvia de flores al terminar */
+.confeti {
+    position: fixed;
+    top: -40px;
+    z-index: 100;
+    pointer-events: none;
+    animation: caer 3.5s linear forwards;
+}
+
+@keyframes caer {
+    to { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* Accesibilidad */
+:focus-visible {
+    outline: 3px solid var(--rosa-boton);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pasos.con-js label,
+    .copiar,
+    #relleno {
+        transition: none;
+    }
+}
+
+/* Celular */
+@media (max-width: 600px) {
+    body {
+        font-size: 1.05rem;
+    }
+
+    .portada {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 32px 20px 40px;
+    }
+
+    .frasco {
+        width: 100px;
+    }
+
+    .tarjeta {
+        padding: 20px 16px;
+    }
+
+    h2 {
+        font-size: 1.35rem;
+    }
+
+    .icono {
+        width: 44px;
+        height: 44px;
+    }
+
+    pre code {
+        font-size: 1.1rem;
+    }
+
+    .codigo figcaption span::before {
+        margin-right: 46px;
+    }
+}

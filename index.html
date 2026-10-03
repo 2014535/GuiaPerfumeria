@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía para el proyecto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="portada">
+        <div class="portada-texto">
+            <h1>Pasos para proyecto</h1>
+            <p>Sigue los pasos con calma y marca tu avance. ¡Tú puedes! 🌸</p>
+        </div>
+        <svg class="frasco" viewBox="0 0 120 160" aria-hidden="true">
+            <rect x="46" y="6" width="28" height="20" rx="5" fill="#fbd5e0"/>
+            <rect x="53" y="26" width="14" height="12" fill="#f4a9c0"/>
+            <rect x="20" y="38" width="80" height="112" rx="24" fill="#fbd5e0" stroke="#ffffff" stroke-width="4"/>
+            <rect x="32" y="84" width="56" height="54" rx="16" fill="#d6477a"/>
+            <rect x="32" y="52" width="12" height="26" rx="6" fill="#ffffff" opacity="0.7"/>
+            <circle cx="72" cy="104" r="5" fill="#ffffff" opacity="0.8"/>
+            <circle cx="58" cy="118" r="3" fill="#ffffff" opacity="0.8"/>
+        </svg>
+    </header>
+
+    <div class="progreso" role="status" aria-live="polite">
+        <div class="barra"><span id="relleno"></span></div>
+        <p id="textoProgreso">Llevas 0 de 0 pasos</p>
+    </div>
+
+    <main>
+        <section class="tarjeta rosa">
+            <h2><span class="icono" aria-hidden="true">⚙️</span> Antes de iniciar</h2>
+            <ol class="pasos">
+                <li>Ir a configuración del computador.</li>
+                <li>Buscar <strong>Opciones Avanzadas</strong></li>
+                <li>Activar el <strong>Modo para desarrolladores</strong></li>
+            </ol>
+        </section>
+
+        <section class="tarjeta verde">
+            <h2><span class="icono" aria-hidden="true">🚀</span> Primeros pasos</h2>
+            <ol class="pasos">
+                <li>Abrir <strong>Visual Studio.</strong></li>
+                <li>Buscar la pantilla en el buscador como <strong>WinUi</strong> y selecciona la que tenga el simbolo de <strong>C#</strong> y diga <strong>(Empaquetada)</strong></li>
+                <li>Revisar si tenemos el <strong>explorador de soluciones</strong></li>
+            </ol>
+            <h3>Explorador de soluciones</h3>
+            <p>Si no lo tenemos, vamos a la barra de herramientas y buscamos <strong>Ver</strong> y luego <strong>Explorador de soluciones</strong></p>
+        </section>
+
+        <section class="tarjeta rosa">
+            <h2><span class="icono" aria-hidden="true">💡</span> Datos</h2>
+            <p>La plantilla en blanco crea la estructura básica de una app de Windows. El modo de desarrolador deja que Windows ejecute tu app mientras la programas. El explorador de solcuiones muestra todos los archivos del proyecto.</p>
+        </section>
+
+        <section class="tarjeta verde">
+            <h2><span class="icono" aria-hidden="true">📁</span> Segundo paso: Carpetas y clases.</h2>
+            <h3>Carpetas</h3>
+            <p>Crea las carpetas <strong>Models</strong> y <strong>Services</strong>, y dentro de cada una, crea las clases correspondientes.</p>
+            <ol class="pasos">
+                <li>En el explorador de soluciones, haz clic derecho en el proyecto en este caso <strong>"PerfumeriaPIA1"</strong> le damos click derecho y se nos abrira una lista con la opción <strong>Agregar</strong> y luego damos click en <strong>Nueva carpeta</strong></li>
+                <li>Escribe el nombre de la carpeta como <strong>Models</strong></li>
+                <li>Repite el proceso para crear otra carpeta llamada <strong>Services</strong></li>
+            </ol>
+        </section>
+
+        <section class="tarjeta rosa">
+            <h2><span class="icono" aria-hidden="true">🧴</span> Clases de Models</h2>
+
+            <h3>Crear la clase de Perfume</h3>
+            <ol class="pasos">
+                <li>Haz clic derecho en la carpeta <strong>Models</strong>, selecciona <strong>Agregar</strong> y luego <strong>Clase</strong>.</li>
+                <li>Le ponemos de nombre <strong>Perfume.cs</strong> y damos enter.</li>
+                <li>Se nos abrira la ventana de <strong>"Perfume.cs"</strong> y pondremos este codigo:</li>
+            </ol>
+
+            <figure class="codigo">
+                <figcaption>
+                    <span>Perfume.cs</span>
+                    <button type="button" class="copiar">Copiar</button>
+                </figcaption>
+<pre><code>namespace AvancePerfumeriaPIA.Models
+{
+    public class Perfume
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; } = string.Empty;
+        public string Marca { get; set; } = string.Empty;
+        public decimal Precio { get; set; }
+    }
+}
+</code></pre>
+            </figure>
+
+            <h3> ¿Qué hace?</h3>
+            <ul>
+                <li><code>namespace</code>: el nombre del "cajón" donde vive la clase. Debe coincidir con el nombre del proyecto.</li>
+                <li><code>class Perfume</code>: el molde de un perfume.</li>
+                <li><code>Id</code>, <code>Nombre</code>, <code>Marca</code>, y <code>Precio</code>, <code>Stock</code>: los datos que guarda cada perfume.</li>
+                <li><code>int</code>: es un numero entero, <code>double</code> un numero con decimales y <code>string</code> es texto.</li>
+                <li><code>{get; set;}</code>: permite leer el dato y escribir un valor.</li>
+            </ul>
+
+            <ol class="pasos">
+                <li>Ahora, repetimos el mismo proceso para crear <strong>Usuario.cs</strong></li>
+                <li>Haz clic derecho en la carpeta <strong>Models</strong>, selecciona <strong>Agregar</strong> y luego <strong>Clase</strong>.</li>
+                <li>Le ponemos de nombre <strong>"Usuario.cs"</strong> y pondremos este codigo:</li>
+            </ol>
+
+            <figure class="codigo">
+                <figcaption>
+                    <span>Usuario.cs</span>
+                    <button type="button" class="copiar">Copiar</button>
+                </figcaption>
+<pre><code>namespace PerfumeriaPIA1.Models
+{
+    public class Usuario
+    {
+        public string NombreUsuario { get; set; } = string.Empty;
+        public string Contraseña { get; set; } = string.Empty;
+    }
+}
+</code></pre>
+            </figure>
+        </section>
+
+        <section class="tarjeta verde">
+            <h2><span class="icono" aria-hidden="true">🛠️</span> Clase PerfumeService</h2>
+
+            <h3>Crear la clase PerfumeService.cs</h3>
+            <ol class="pasos">
+                <li>Haz clic derecho en <strong>Services</strong>, agregar y le das en <strong>clase</strong>.</li>
+                <li>Le ponemos de nombre <strong>PerfumeService.cs</strong></li>
+                <li>Se nos abrira la ventana y pondremos este codigo:</li>
+            </ol>
+
+            <figure class="codigo">
+                <figcaption>
+                    <span>PerfumeService.cs</span>
+                    <button type="button" class="copiar">Copiar</button>
+                </figcaption>
+<pre><code>// codigo pendienteeeeeeeeeeeee
+</code></pre>
+            </figure>
+        </section>
+    </main>
+
+    <footer>
+        <p>Hecho con cariño para ti 💚</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
