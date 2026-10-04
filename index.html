@@ -90,7 +90,7 @@
         public int Id { get; set; }
         public string Nombre { get; set; } = string.Empty;
         public string Marca { get; set; } = string.Empty;
-        public decimal Precio { get; set; }
+        public double Precio { get; set; }
         public int Stock { get; set; }
     }
 }
@@ -102,7 +102,7 @@
                 <li><code>namespace</code>: el nombre del "cajón" donde vive la clase. Debe coincidir con el nombre del proyecto.</li>
                 <li><code>class Perfume</code>: el molde de un perfume.</li>
                 <li><code>Id</code>, <code>Nombre</code>, <code>Marca</code>, <code>Precio</code> y <code>Stock</code>: los datos que guarda cada perfume.</li>
-                <li><code>int</code>: es un número entero, <code>decimal</code> un número con decimales (ideal para precios) y <code>string</code> es texto.</li>
+                <li><code>int</code>: es un número entero, <code>double</code> un número con decimales y <code>string</code> es texto.</li>
                 <li><code>{get; set;}</code>: permite leer el dato y escribir un valor.</li>
             </ul>
 
@@ -122,7 +122,7 @@
     public class Usuario
     {
         public string NombreUsuario { get; set; } = string.Empty;
-        public string Contraseña { get; set; } = string.Empty;
+        public string Contrasena { get; set; } = string.Empty;
     }
 }
 </code></pre>
@@ -246,6 +246,64 @@ namespace PerfumeriaPIA1.Services
 }
 </code></pre>
             </figure>
+
+            <h3>¿Qué hace?</h3>
+            <p>Esta clase es el "encargado" del catálogo: sabe leer, guardar, buscar, agregar, cambiar y borrar perfumes. Las demás páginas le piden las cosas a él en lugar de hacerlas por su cuenta. Vamos por partes:</p>
+
+            <h3>Al inicio del archivo</h3>
+            <ul>
+                <li><code>using ...;</code>: son los "permisos" para usar herramientas que ya trae .NET. Por ejemplo, <code>System.IO</code> sirve para trabajar con archivos y <code>System.Text.Json</code> para leer y escribir JSON.</li>
+                <li><code>using PerfumeriaPIA1.Models;</code>: nos deja usar la clase <code>Perfume</code> que creamos antes.</li>
+                <li><code>namespace PerfumeriaPIA1.Services</code>: el "cajón" donde vive esta clase, igual que en Models.</li>
+            </ul>
+
+            <h3>Los datos de la clase</h3>
+            <ul>
+                <li><code>_rutaArchivo</code>: guarda la ubicación del archivo <code>perfumes.json</code>, donde se guardan los perfumes. <code>readonly</code> significa que, una vez asignado, ya no se puede cambiar.</li>
+                <li><code>_perfumes</code>: la lista de perfumes mientras la app está abierta. <code>List&lt;Perfume&gt;</code> se lee "lista de perfumes".</li>
+            </ul>
+
+            <h3>El constructor: <code>PerfumeService()</code></h3>
+            <p>Se ejecuta automáticamente cuando alguien crea un <code>PerfumeService</code>. Hace dos cosas:</p>
+            <ul>
+                <li><code>Path.Combine(AppContext.BaseDirectory, "perfumes.json")</code>: arma la ruta del archivo, en la misma carpeta donde se ejecuta la app.</li>
+                <li><code>CargarDatos()</code>: llena la lista con los perfumes guardados.</li>
+            </ul>
+
+            <h3>CargarDatos</h3>
+            <ul>
+                <li><code>File.Exists(...)</code>: pregunta si el archivo ya existe.</li>
+                <li>Si existe, <code>File.ReadAllText</code> lo lee y <code>JsonSerializer.Deserialize</code> convierte ese texto en una lista de perfumes. El <code>?? new List&lt;Perfume&gt;()</code> significa "si algo sale vacío, usa una lista nueva".</li>
+                <li>Si no existe (la primera vez que se abre la app), devuelve tres perfumes de ejemplo para que no se vea vacío.</li>
+            </ul>
+
+            <h3>GuardarDatos</h3>
+            <ul>
+                <li><code>JsonSerializer.Serialize</code>: hace lo contrario, convierte la lista en texto JSON. <code>WriteIndented = true</code> lo deja ordenado y fácil de leer.</li>
+                <li><code>File.WriteAllText</code>: escribe ese texto en <code>perfumes.json</code>. Así los cambios no se pierden al cerrar la app.</li>
+            </ul>
+
+            <h3>Los métodos para consultar</h3>
+            <ul>
+                <li><code>ObtenerTodos()</code>: devuelve la lista completa. La flecha <code>=&gt;</code> es una forma corta de escribir "devuelve esto".</li>
+                <li><code>BuscarPorId(int id)</code>: busca un perfume por su número. <code>FirstOrDefault</code> trae el primero que coincida, o nada si no existe. El <code>?</code> en <code>Perfume?</code> indica que el resultado puede venir vacío.</li>
+                <li><code>Buscar(string texto)</code>: busca por nombre o marca. Primero limpia el texto (<code>Trim</code> quita espacios y <code>ToLower</code> lo pasa a minúsculas) para que "dior" y "DIOR" den el mismo resultado. Si no escribiste nada, devuelve todos. <code>Contains</code> revisa si el nombre o la marca incluyen ese texto, y <code>||</code> significa "o".</li>
+            </ul>
+
+            <h3>Los métodos que modifican</h3>
+            <ul>
+                <li><code>Agregar</code>: le asigna un <code>Id</code> nuevo (el más grande que exista más uno, o 1 si no hay ninguno), lo mete a la lista y guarda el archivo.</li>
+                <li><code>Actualizar</code>: busca el perfume por <code>Id</code>. Si no existe, devuelve <code>false</code> ("no se pudo"). Si existe, le copia los datos nuevos, guarda y devuelve <code>true</code> ("listo").</li>
+                <li><code>Eliminar</code>: busca el perfume, lo quita de la lista, guarda y devuelve <code>true</code>. Si no lo encuentra, devuelve <code>false</code>.</li>
+            </ul>
+
+            <h3>ExportarCsv</h3>
+            <ul>
+                <li>Crea un archivo <code>.csv</code>, que se puede abrir con Excel.</li>
+                <li><code>StringBuilder</code>: es como una libreta donde vamos agregando líneas de texto una por una.</li>
+                <li>La primera línea son los títulos de las columnas. Después, el <code>foreach</code> recorre cada perfume y agrega una línea con sus datos separados por comas.</li>
+                <li><code>File.WriteAllText(...)</code>: guarda todo en la ruta que se elija. <code>Encoding.UTF8</code> hace que los acentos se vean bien.</li>
+            </ul>
         </section>
     </main>
 
