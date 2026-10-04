@@ -36,8 +36,8 @@
             <h2><span class="icono" aria-hidden="true">⚙️</span> Antes de iniciar</h2>
             <ol class="pasos">
                 <li>Ir a configuración del computador.</li>
-                <li>Buscar <strong>Opciones Avanzadas</strong></li>
-                <li>Activar el <strong>Modo para desarrolladores</strong></li>
+                <li>Buscar <strong>Opciones Avanzadas</strong>.</li>
+                <li>Activar el <strong>Modo para desarrolladores</strong>.</li>
             </ol>
         </section>
 
@@ -45,7 +45,7 @@
             <h2><span class="icono" aria-hidden="true">🚀</span> Primeros pasos</h2>
             <ol class="pasos">
                 <li>Abrir <strong>Visual Studio.</strong></li>
-                <li>Buscar la pantilla en el buscador como <strong>WinUi</strong> y selecciona la que tenga el simbolo de <strong>C#</strong> y diga <strong>(Empaquetada)</strong></li>
+                <li>Buscar la plantilla en el buscador como <strong>WinUi</strong> y selecciona la que tenga el símbolo de <strong>C#</strong> y diga <strong>(Empaquetada)</strong></li>
                 <li>Revisar si tenemos el <strong>explorador de soluciones</strong></li>
             </ol>
             <h3>Explorador de soluciones</h3>
@@ -54,7 +54,7 @@
 
         <section class="tarjeta rosa">
             <h2><span class="icono" aria-hidden="true">💡</span> Datos</h2>
-            <p>La plantilla en blanco crea la estructura básica de una app de Windows. El modo de desarrolador deja que Windows ejecute tu app mientras la programas. El explorador de solcuiones muestra todos los archivos del proyecto.</p>
+            <p>La plantilla en blanco crea la estructura básica de una app de Windows. El modo de desarrollador deja que Windows ejecute tu app mientras la programas. El explorador de soluciones muestra todos los archivos del proyecto.</p>
         </section>
 
         <section class="tarjeta verde">
@@ -62,7 +62,7 @@
             <h3>Carpetas</h3>
             <p>Crea las carpetas <strong>Models</strong> y <strong>Services</strong>, y dentro de cada una, crea las clases correspondientes.</p>
             <ol class="pasos">
-                <li>En el explorador de soluciones, haz clic derecho en el proyecto en este caso <strong>"PerfumeriaPIA1"</strong> le damos click derecho y se nos abrira una lista con la opción <strong>Agregar</strong> y luego damos click en <strong>Nueva carpeta</strong></li>
+                <li>En el explorador de soluciones, haz clic derecho en el proyecto, en este caso <strong>"PerfumeriaPIA1"</strong>, y se nos abrirá una lista con la opción <strong>Agregar</strong>; luego damos clic en <strong>Nueva carpeta</strong></li>
                 <li>Escribe el nombre de la carpeta como <strong>Models</strong></li>
                 <li>Repite el proceso para crear otra carpeta llamada <strong>Services</strong></li>
             </ol>
@@ -75,7 +75,7 @@
             <ol class="pasos">
                 <li>Haz clic derecho en la carpeta <strong>Models</strong>, selecciona <strong>Agregar</strong> y luego <strong>Clase</strong>.</li>
                 <li>Le ponemos de nombre <strong>Perfume.cs</strong> y damos enter.</li>
-                <li>Se nos abrira la ventana de <strong>"Perfume.cs"</strong> y pondremos este codigo:</li>
+                <li>Se nos abrirá la ventana de <strong>"Perfume.cs"</strong> y pondremos este código:</li>
             </ol>
 
             <figure class="codigo">
@@ -83,7 +83,7 @@
                     <span>Perfume.cs</span>
                     <button type="button" class="copiar">Copiar</button>
                 </figcaption>
-<pre><code>namespace AvancePerfumeriaPIA.Models
+<pre><code>namespace PerfumeriaPIA1.Models
 {
     public class Perfume
     {
@@ -91,24 +91,25 @@
         public string Nombre { get; set; } = string.Empty;
         public string Marca { get; set; } = string.Empty;
         public decimal Precio { get; set; }
+        public int Stock { get; set; }
     }
 }
 </code></pre>
             </figure>
 
-            <h3> ¿Qué hace?</h3>
+            <h3>¿Qué hace?</h3>
             <ul>
                 <li><code>namespace</code>: el nombre del "cajón" donde vive la clase. Debe coincidir con el nombre del proyecto.</li>
                 <li><code>class Perfume</code>: el molde de un perfume.</li>
-                <li><code>Id</code>, <code>Nombre</code>, <code>Marca</code>, y <code>Precio</code>, <code>Stock</code>: los datos que guarda cada perfume.</li>
-                <li><code>int</code>: es un numero entero, <code>double</code> un numero con decimales y <code>string</code> es texto.</li>
+                <li><code>Id</code>, <code>Nombre</code>, <code>Marca</code>, <code>Precio</code> y <code>Stock</code>: los datos que guarda cada perfume.</li>
+                <li><code>int</code>: es un número entero, <code>decimal</code> un número con decimales (ideal para precios) y <code>string</code> es texto.</li>
                 <li><code>{get; set;}</code>: permite leer el dato y escribir un valor.</li>
             </ul>
 
             <ol class="pasos">
                 <li>Ahora, repetimos el mismo proceso para crear <strong>Usuario.cs</strong></li>
                 <li>Haz clic derecho en la carpeta <strong>Models</strong>, selecciona <strong>Agregar</strong> y luego <strong>Clase</strong>.</li>
-                <li>Le ponemos de nombre <strong>"Usuario.cs"</strong> y pondremos este codigo:</li>
+                <li>Le ponemos de nombre <strong>"Usuario.cs"</strong> y pondremos este código:</li>
             </ol>
 
             <figure class="codigo">
@@ -135,7 +136,7 @@
             <ol class="pasos">
                 <li>Haz clic derecho en <strong>Services</strong>, agregar y le das en <strong>clase</strong>.</li>
                 <li>Le ponemos de nombre <strong>PerfumeService.cs</strong></li>
-                <li>Se nos abrira la ventana y pondremos este codigo:</li>
+                <li>Se nos abrirá la ventana y pondremos este código:</li>
             </ol>
 
             <figure class="codigo">
@@ -143,7 +144,106 @@
                     <span>PerfumeService.cs</span>
                     <button type="button" class="copiar">Copiar</button>
                 </figcaption>
-<pre><code>// en espera... gfhgfhgfhfghgfh
+<pre><code>using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using PerfumeriaPIA1.Models;
+
+namespace PerfumeriaPIA1.Services
+{
+    public class PerfumeService
+    {
+        private readonly string _rutaArchivo;
+        private List&lt;Perfume&gt; _perfumes;
+
+        public PerfumeService()
+        {
+            _rutaArchivo = Path.Combine(AppContext.BaseDirectory, "perfumes.json");
+            _perfumes = CargarDatos();
+        }
+
+        private List&lt;Perfume&gt; CargarDatos()
+        {
+            if (File.Exists(_rutaArchivo))
+            {
+                var json = File.ReadAllText(_rutaArchivo);
+                return JsonSerializer.Deserialize&lt;List&lt;Perfume&gt;&gt;(json) ?? new List&lt;Perfume&gt;();
+            }
+
+            return new List&lt;Perfume&gt;
+            {
+                new Perfume { Id = 1, Nombre = "Bleu de Chanel", Marca = "Chanel", Precio = 1850, Stock = 12 },
+                new Perfume { Id = 2, Nombre = "Sauvage", Marca = "Dior", Precio = 1650, Stock = 8 },
+                new Perfume { Id = 3, Nombre = "Black Opium", Marca = "YSL", Precio = 1750, Stock = 5 }
+            };
+        }
+
+        private void GuardarDatos()
+        {
+            var json = JsonSerializer.Serialize(_perfumes, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(_rutaArchivo, json);
+        }
+
+        public List&lt;Perfume&gt; ObtenerTodos() =&gt; _perfumes;
+
+        public Perfume? BuscarPorId(int id) =&gt; _perfumes.FirstOrDefault(p =&gt; p.Id == id);
+
+        public List&lt;Perfume&gt; Buscar(string texto)
+        {
+            texto = (texto ?? string.Empty).Trim().ToLower();
+            if (string.IsNullOrEmpty(texto)) return _perfumes;
+
+            return _perfumes.Where(p =&gt;
+                p.Nombre.ToLower().Contains(texto) ||
+                p.Marca.ToLower().Contains(texto)
+            ).ToList();
+        }
+
+        public void Agregar(Perfume perfume)
+        {
+            perfume.Id = _perfumes.Count == 0 ? 1 : _perfumes.Max(p =&gt; p.Id) + 1;
+            _perfumes.Add(perfume);
+            GuardarDatos();
+        }
+
+        public bool Actualizar(Perfume perfumeActualizado)
+        {
+            var existente = BuscarPorId(perfumeActualizado.Id);
+            if (existente == null) return false;
+
+            existente.Nombre = perfumeActualizado.Nombre;
+            existente.Marca = perfumeActualizado.Marca;
+            existente.Precio = perfumeActualizado.Precio;
+            existente.Stock = perfumeActualizado.Stock;
+            GuardarDatos();
+            return true;
+        }
+
+        public bool Eliminar(int id)
+        {
+            var existente = BuscarPorId(id);
+            if (existente == null) return false;
+
+            _perfumes.Remove(existente);
+            GuardarDatos();
+            return true;
+        }
+
+        public void ExportarCsv(string rutaDestino)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("Id,Nombre,Marca,Precio,Stock");
+            foreach (var p in _perfumes)
+            {
+                sb.AppendLine($"{p.Id},{p.Nombre},{p.Marca},{p.Precio},{p.Stock}");
+            }
+            File.WriteAllText(rutaDestino, sb.ToString(), Encoding.UTF8);
+        }
+    }
+}
 </code></pre>
             </figure>
         </section>
